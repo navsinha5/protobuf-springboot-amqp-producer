@@ -1,0 +1,1 @@
+# protobuf-springboot-amqp-producer
