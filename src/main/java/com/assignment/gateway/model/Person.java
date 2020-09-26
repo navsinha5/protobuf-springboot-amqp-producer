@@ -11,7 +11,7 @@ public class Person {
     @NotBlank(message= "missing parameter, salary is required")
     private String salary;
     @NotNull(message = "missing parameter, age is required")
-    @Min(value = 0, message= "age can't be negative integer")
+    @Min(value = 1, message= "age can't be less than zero")
     @Max(value = 100, message = "age can't be greater than 100")
     private Integer age;
 
