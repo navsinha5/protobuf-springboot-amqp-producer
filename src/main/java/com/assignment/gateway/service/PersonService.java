@@ -4,6 +4,8 @@ import com.assignment.gateway.model.*;
 import com.assignment.gateway.protobuf.PersonProtos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -69,8 +71,14 @@ public class PersonService {
 
     public Person getPerson(String id){
         try{
-            return restTemplate.getForObject(storageServiceUri + id, Person.class);
+            ResponseEntity<Person> response = restTemplate.getForEntity(storageServiceUri + id, Person.class);
+            if(response.getStatusCode() == HttpStatus.OK){
+                return response.getBody();
+            }else {
+                throw new GatewayException(response.getStatusCodeValue(), "failed to retrieve person");
+            }
         }catch (RestClientException ex){
+            System.out.println("failed to retrieve person: " + ex.getMessage());
             throw new GatewayException();
         }
     }
