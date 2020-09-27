@@ -1,6 +1,6 @@
 # Introduction
 This project is a part of three layer microservices design (gateway - amqp - storage). 
-This code base works as a 'gateway' which is consumer facing.
+This code base works as a 'gateway' service.
 - TLS level encryption is applied within REST APIs.
 - Data is encrypted at producer level then sent to queue.
 
