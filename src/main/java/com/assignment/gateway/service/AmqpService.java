@@ -35,4 +35,5 @@ public class AmqpService {
         }
         rabbitTemplate.convertAndSend(queueName, encryptedMessage);
     }
+
 }
